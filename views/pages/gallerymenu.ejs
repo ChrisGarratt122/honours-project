@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <% include ../partials/head %>
+
+    <!--Stylesheet CSS References-->
+    <link href="/stylesheets/general.css" rel="stylesheet">
+    <link href="/stylesheets/gallerymenu.css" rel="stylesheet">
+    <!-- <link href="/stylesheets/index.css" rel="stylesheet"> -->
+
+  </head>
+
+  <body>
+
+      <!-- Navigation Bar -->
+      <% include ../partials/navbar %>
+
+      <h1>360 Gallery Menu</h1>
+      <h2>Select from an image below to experience our 360 panoramas!</h2>
+
+        <!-- Carousel -->
+        <div id="demo" class="menu-container carousel slide" data-interval="false" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul id="indicators" class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div id="slideshow" class="carousel-inner ">
+
+          <div class="carousel-item active">
+
+              <div class="row">
+
+              </div>
+
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+
+      <!--Footer-->
+      <% include ../partials/footer %>
+      <script type="text/javascript" src="/js/3dviewer.js"></script>
+      <script type="text/javascript" src="/js/gallerymenu.js"></script>
+      <!-- <script type="text/javascript" src="/js/carousel.js"></script> -->
+      <!-- <script type="text/javascript" src="/js/gallery.js"></script> -->
+
+
+  </body>
+
+</html>

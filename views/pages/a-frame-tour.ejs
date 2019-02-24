@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>St Andrews 360 Tour</title>
+    <meta name="description" content="St Andrews 360 Tour">
+    <meta name="author" content="Chris Garratt (Adapted from: Kumar Ahir - VR Designer)">
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- <script src="/lib/jquery/js/jquery.min.js" type="text/javascript"></script> -->
+    <script src="/js/hotspots.js"></script>
+
+    <!-- Altered code from: https://medium.com/@kumar.ahir/how-to-create-a-virtual-tour-using-a-frame-164941fea573  -->
+
+  </head>
+  <body>
+    <a-scene background="color: #ECECEC">
+      <a-assets>
+      <!-- <img id="landing" src=""/> -->
+      <img id="image1" src="/img/360gallery/outside_stairs.jpg"/>
+      <img id="image2" src="/img/360gallery/tunnel_stairs.jpg"/>
+      <img id="image3" src="/img/360gallery/tunnel1.jpg"/>
+      <img id="image4" src="/img/360gallery/tunnel2.jpg"/>
+      <img id="image5" src="/img/360gallery/tunnel3.jpg"/>
+      <img id="image6" src="/img/360gallery/tunnel4.jpg"/>
+      <img id="image7" src="/img/360gallery/tunnel5.jpg"/>
+
+      <!-- <img id="hotspot" src="https://cdn.glitch.com/2087dfa6-bd02-4451-a189-36095a66f386%2Fup-arrow.png?1545397127546"/> -->
+      <img id="hotspot" src="/img/360gallery/thinarrowup.png"/>
+      </a-assets>
+
+      <a-entity id="spots" hotspots>
+        <!-- <a-entity id="group-landing">
+          <a-image spot="linkto:#image2;spotgroup:group-image2" position="-7 0.5 1"></a-image>
+        </a-entity> -->
+        <a-entity id="group-image1">
+          <a-image spot="linkto:#image2;spotgroup:group-image2" position="-7 0.5 1"></a-image>
+        </a-entity>
+        <a-entity id="group-image2" scale="0 0 0">
+          <a-image spot="linkto:#image1;spotgroup:group-image1" position="-0.5 6 6"></a-image>
+          <a-image spot="linkto:#image3;spotgroup:group-image3" position="-6 1 2"></a-image>
+        </a-entity>
+        <a-entity id="group-image3" scale="0 0 0">
+          <a-image spot="linkto:#image2;spotgroup:group-image2" position="0 3.5 5"></a-image>
+          <a-image spot="linkto:#image4;spotgroup:group-image4" position="-8 0 1"></a-image>
+        </a-entity>
+        <a-entity id="group-image4" scale="0 0 0">
+          <a-image spot="linkto:#image3;spotgroup:group-image3" position="3 4.5 7"></a-image>
+          <a-image spot="linkto:#image5;spotgroup:group-image5" position="1 1 -10"></a-image>
+        </a-entity>
+        <a-entity id="group-image5" scale="0 0 0">
+          <a-image spot="linkto:#image4;spotgroup:group-image4" position="-6 3.5 1"></a-image>
+          <a-image spot="linkto:#image6;spotgroup:group-image6" position="8 1.5 2.5"></a-image>
+        </a-entity>
+        <a-entity id="group-image6" scale="0 0 0">
+          <a-image spot="linkto:#image5;spotgroup:group-image5" position="5 4 10"></a-image>
+          <!-- <a-image spot="linkto:#image7;spotgroup:group-image7" position="-5 0 0"></a-image> -->
+        </a-entity>
+
+
+      <a-sky id="skybox"  src="#image1"></a-sky>
+
+      <a-entity id="cam" camera position="0 1.6 0" look-controls>
+        <a-entity cursor="fuse:true;fuseTimeout:2000"
+                  geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
+                  position="0 0 -1.8"
+                  material="shader:flat;color:#ff0000"
+                  animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:2000;loop:1">
+        </a-entity>
+      </a-entity>
+
+    </a-scene>
+
+    <!-- <script src="/lib/jquery/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/360tour.js"></script> -->
+
+  </body>
+</html>

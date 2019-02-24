@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="/js/set-image.js"></script>
+  </head>
+  <body>
+
+
+    <a-scene>
+      <a-assets>
+        <img id="castle1" src="/img/360gallery/hugin1.png">
+        <img id="castle1thumb" src="/img/360gallery/castle1thumb.jpg">
+        <img id="staircase1" src="/img/360gallery/staircase1.jpg">
+        <img id="staircase1thumb" src="/img/360gallery/staircase1thumb.jpg">
+        <img id="window1" src="/img/360gallery/window1.jpg">
+        <img id="window1thumb" src="/img/360gallery/window1thumb.jpg">
+        <img id="image1" src="/img/360gallery/1.jpg">
+        <img id="image2" src="/img/360gallery/2.jpg">
+        <img id="image3" src="/img/360gallery/3.jpg">
+        <img id="image4" src="/img/360gallery/4.jpg">
+        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+        <!-- Image link template to be reused. -->
+        <script id="link" type="text/html">
+          <a-entity class="link"
+            geometry="primitive: plane; height: 1; width: 1"
+            material="shader: flat; src: ${thumb}"
+            event-set__1="_event: mousedown; scale: 1 1 1"
+            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+            event-set__4="_event: mouseleave; scale: 1 1 1"
+            set-image="on: click; target: #image-360; src: ${src}"
+            sound="on: click; src: #click-sound"></a-entity>
+        </script>
+      </a-assets>
+
+      <!-- 360-degree image. -->
+      <a-sky id="image-360" radius="10" src="#image1"></a-sky>
+
+      <!-- Image links. -->
+      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+        <a-entity template="src: #link" data-src="#image1" data-thumb="#castle1thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#image2" data-thumb="#staircase1thumb"></a-entity>
+        <a-entity template="src: #link" data-src="#image3" data-thumb="#window1thumb"></a-entity>
+      </a-entity>
+
+      <!-- Camera + cursor. -->
+      <a-entity camera look-controls>
+        <a-cursor id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: springgreen"
+          event-set__2="_event: mouseleave; color: black"
+          fuse="true"
+          raycaster="objects: .link"></a-cursor>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>

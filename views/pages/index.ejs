@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <% include ../partials/head %>
+
+    <!--Stylesheet CSS References-->
+    <link href="/stylesheets/general.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" media="screen and (min-width: 800px)" href="/stylesheets/index.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="/stylesheets/smallindex.css"> -->
+
+    <link href="/stylesheets/index.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+        <!-- Navigation Bar -->
+        <% include ../partials/navbar %>
+
+        <h1 class="pagetitle" >Welcome to Fraserburgh 2021</h1>
+
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide" data-interval="false" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul id="indicators" class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div id="slideshow" class="carousel-inner ">
+          <div class="carousel-item active">
+
+            <div class="carousel-textbox">
+
+              <h2>3D Model Viewers</h2>
+
+              <p>Many sections of this website employ WebGL technologies
+                 to present interactive 3D models directly through your browser.
+
+                Take a look at the example model on this page, drag and scroll
+                on the interactive viewer to inspect the bell of a fishing ship
+                grounded near the lighthouse museum in Fraserburgh.</p>
+
+            </div>
+
+            <div class="modelbox" id="bell">
+
+            </div>
+
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-textbox">
+
+              <h2>Virtual Town</h2>
+
+              <p>The virtual town section of this website allows you to view
+                buildings of cultural importance through a unique perspective
+                within a 3D virtual environment.
+
+                You can view information about the buildings of importance
+                within the virtual town, providing an immersive learning experience. </p>
+
+            </div>
+
+            <div id="vrimage" class="image">
+
+            </div>
+
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-textbox">
+
+              <h2>360 Gallery</h2>
+
+              <p>VCheck out the 360 Gallery to view 360 panoramas of locations of
+              cultural importance.</p>
+
+            </div>
+
+            <div id="galleryimage" class="image">
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+
+      </div>
+
+      <!-- <div class="logobar">
+        <div id="mainlogo">
+
+        </div>
+
+        <div id="logobar">
+
+        </div>
+      </div> -->
+
+      <!--Footer-->
+      <% include ../partials/footer %>
+      <script type="text/javascript" src="/js/3dviewer.js"></script>
+      <!-- <script type="text/javascript" src="/js/carousel.js"></script> -->
+      <!-- <script type="text/javascript" src="/js/gallery.js"></script> -->
+
+
+  </body>
+
+</html>
