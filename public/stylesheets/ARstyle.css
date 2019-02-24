@@ -1,0 +1,118 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+/* Element containing Rendered Scene */
+#scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+#buttons {
+  font-family: sans-serif,monospace;
+    font-size: 13px;
+    width: 100%;
+    font-weight: 200;
+    line-height: 16px;
+    height: 10%;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+#VRbutton {
+background: url(/img/cardboardicon.png) 50% 50%/70% 70% no-repeat rgba(0,0,0,.35);
+border: 0;
+bottom: 0;
+cursor: pointer;
+min-width: 50px;
+min-height: 30px;
+padding-right: 5%;
+padding-top: 4%;
+position: absolute;
+right: 0;
+transition: background-color .05s ease;
+-webkit-transition: background-color .05s ease;
+z-index: 9999;
+}
+
+/*Hud drawn over scene  */
+#selection_confirmation_overlay {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(76, 175, 80, 0.3) /* Green background with 30% opacity */
+}
+#left_hud {
+    pointer-events: none;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    width: 98%;
+    height: 100%;
+    margin-left: 2%;
+}
+/* #right_hud {
+    pointer-events: none;
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    width: 95%;
+    height: 100%;
+    margin-right: 2.5%;
+} */
+#guide_circle_left {
+    pointer-events: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 100%;
+}
+/* #guide_circle_right {
+    pointer-events: none;
+    position: absolute;
+    top: 25%; left: 25%;
+    transform: translate(-10%,-10%);
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 100%;
+} */
+#top_hud_text_area{
+font-family: cerealBoxFont;
+margin-left: 10px;
+margin-top: 10px;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-image: -webkit-gradient(linear,  left top,  left bottom,
+    color-stop(0.2, orange),
+    color-stop(0.8, yellow));
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: blue;
+
+}
+#bottom_hud_text_area{
+    position:absolute;
+    bottom:0;
+    margin-bottom: 5%;
+    text-shadow: 1px 1px darkgray;
+}
+.heading_text{
+    font-size: 125%;
+}
+#heading_image_left{
+    text-align: right;
+}
+.info_text{
+    color: white;
+    /* font-size: 1.3rem; */
+    font-size: 100%;
+    font-family: helvetica;
+}

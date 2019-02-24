@@ -1,0 +1,97 @@
+/**********
+  General
+**********/
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Barlow', sans-serif;
+
+}
+
+div {
+  /* border: 1px solid purple; */
+}
+
+.navbar {
+  background-color: #000000;
+  font-size: 1.15rem;
+}
+
+.navbar-brand {
+  margin-left: 8%;
+  margin-right: 5%;
+
+  /* border: 1px solid green; */
+}
+
+nav li {
+  max-width: 15%;
+  margin-right: 5%;
+}
+
+.nav-link {
+  color: #ffffff;
+  font-size: 1.30rem;
+}
+
+ul {
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.pagetitle {
+  margin-top: 1%;
+  margin-left: 30%;
+}
+
+.footer {
+  margin-top: 2.5%;
+  background-color: black;
+  width: 100%;
+  height: 20%;
+}
+
+#mainlogo {
+  background-image: url('/img/logo.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  float:left;
+  margin-left: 20%;
+  height: 60%;
+  width: 20%;
+  margin-top: 2%;
+}
+
+#logobar {
+  background-image: url('/img/logobarblack.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  float:right;
+  margin-right: 15%;
+  height: 40%;
+  width: 40%;
+  margin-top: 5%;
+}
+
+.logobar {
+  height: 15%;
+}
+
+@media only screen and (max-width: 550px) {
+  #mainlogo {
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 30%;
+  }
+
+  #logobar {
+    margin-right: 5%;
+    margin-top: 10%;
+    width: 50%;
+  }
+}
