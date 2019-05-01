@@ -29,6 +29,7 @@ AFRAME.registerComponent('spot',{
 
     this.el.addEventListener('click',function(){
       //set the skybox source to the new image as per the spot
+      console.log("GETTING SKY ID");
       var sky=document.getElementById("skybox");
       sky.setAttribute("src",data.linkto);
 

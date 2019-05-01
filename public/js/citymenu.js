@@ -1,6 +1,7 @@
 //Elements added using names in array.
 //To add an image link, append the name of the image to the array.
-var imagearray = ['warlds_end','dalrymple_hall','broad_street','saltoun_square'];
+// var imagearray = ['warlds_end','dalrymple_hall','broad_street','saltoun_square'];
+var imagearray = ['warlds_end','dalrymple_hall','saltoun_square'];
 
 var count = 1;
 

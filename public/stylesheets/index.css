@@ -395,6 +395,8 @@ Home Page
 
   .pagetitle {
     font-size: 2rem;
+    text-align: center;
+    margin-left: 12.5%;
   }
 
   .carousel-textbox {
@@ -403,21 +405,29 @@ Home Page
   }
 
   .carousel-textbox h2 {
-    margin-left: 20%;
+    margin-left: 16%;
     font-size: 1.5rem;
   }
 
   .carousel-textbox p {
+    margin-left: 5%;
+    text-align: center;
     font-size: 1rem;
   }
 
   .modelbox {
-    height: auto;
-    width: auto;
+    height: 52.5%;
+    width: 80%;
+    margin-left: 12%;
+  }
+
+  #viewerui {
+
   }
 
   #uiTxt {
     margin-left: 10%;
+    font-size: 0.8rem;
   }
 
 }

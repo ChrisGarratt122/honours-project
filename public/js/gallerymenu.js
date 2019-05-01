@@ -2,7 +2,28 @@
 
 //ADDING EXTRA IMAGES ---- DO NOT NEED TO CHANGE ANYTHING ELSE (Make sure entry is the same as corresponding image file name.)
 //To add an image link, append the name of the image to the array.
-var imagearray = ['outside_stairs','tunnel_stairs','tunnel1','tunnel2', 'tunnel3', 'tunnel4', 'tunnel5'];
+
+//ST ANDREWS TEST DATA
+// var imagearray = ['outside_stairs','tunnel_stairs','tunnel1','tunnel2', 'tunnel3', 'tunnel4', 'tunnel5'];
+
+//FRASERBURGH
+var imagearray =
+    ["PHOTO_0332",
+    "PHOTO_0335",
+    "PHOTO_0336",
+    "PHOTO_0338",
+    "PHOTO_0342",
+    "PHOTO_0344",
+    "PHOTO_0348",
+    "PHOTO_0350",
+    "PHOTO_0353",
+    "PHOTO_0354",
+    "PHOTO_0356",
+    "PHOTO_0358",
+    "PHOTO_0360",
+    "PHOTO_0361",
+    "PHOTO_0364",
+    "PHOTO_0366"];
 
 var count = 1;
 

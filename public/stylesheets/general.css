@@ -95,3 +95,24 @@ ul {
     width: 50%;
   }
 }
+
+@media only screen and (max-width: 500px) {
+
+  #collapsibleNavbar {
+    /* border: 1px dotted white; */
+  }
+
+  .navbar-nav {
+    /* border: 1px dotted red; */
+  }
+
+  .nav-item {
+    width: 100%;
+    margin-left: 43%;
+    /* border: 1px solid white; */
+  }
+
+  .nav-link {
+    text-align: center;
+  }
+}

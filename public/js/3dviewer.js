@@ -13,19 +13,14 @@ $('.modelbox').each(function(i, obj) {
   drawGUI();
 });
 
-// init();
-// animate();
-// drawGUI();
+// ----  Code of this page altered but originally inspired from: https://manu.ninja/webgl-3d-model-viewer-using-three-js ----
 
 function init() {
-
-    // container = document.getElementById('modelbox');
-    // document.body.appendChild(container);
 
     /* Camera */
 
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 3;
+    camera.position.z = 5;
 
     /* Scene */
 
@@ -44,49 +39,36 @@ function init() {
     backLight = new THREE.DirectionalLight(0xffffff, 1.0);
     backLight.position.set(100, 0, -100).normalize();
 
-    /* Utilities */
-
-    // var axisHelper = new THREE.AxisHelper( 1.50 );
-    // scene.add( axisHelper );
-    //
-    //
-    // var radius = 2;
-    // var radials = 0;
-    // var circles = 1;
-    // var divisions = 0;
-    //
-    // var helper = new THREE.PolarGridHelper( radius, radials, circles, divisions );
-    // scene.add( helper );
-
     /* Model */
 
-    //Get model required
+    //Get model required from name specified in html
     var modelstring = container.id;
     console.log("Model string = " + modelstring);
 
     var mtlLoader = new THREE.MTLLoader();
-    // mtlLoader.setBaseUrl('assets/');
-    mtlLoader.setPath('models/'+modelstring+'/');
+
+    //Set directory path of model
+    mtlLoader.setPath('models/'+modelstring+'/3dviewer/');
     mtlLoader.load(modelstring+'.mtl', function (materials) {
-    // mtlLoader.load('female-croupier-2013-03-26.mtl', function (materials) {
-    // mtlLoader.load('test_building_recap_photo.mtl', function (materials) {
 
         materials.preload();
 
-        // materials.materials.default.map.magFilter = THREE.NearestFilter;
-        // materials.materials.default.map.minFilter = THREE.LinearFilter;
-
         var objLoader = new THREE.OBJLoader();
         objLoader.setMaterials(materials);
-        objLoader.setPath('models/'+modelstring+'/');
+        objLoader.setPath('models/'+modelstring+'/3dviewer/');
         objLoader.load(modelstring+'.obj', function (object) {
-        // objLoader.load('test_building_recap_photo.obj', function (object) {
 
             scene.add(object);
 
         });
-
     });
+
+
+    // var loader = new THREE.FBXLoader();
+		// 		loader.load( 'models/warlds_end/model/warlds_end.FBX', function ( object ) {
+    //
+		// 			scene.add( object );
+		// 		} );
 
     /* Renderer */
 
@@ -100,18 +82,6 @@ function init() {
 
 
     /* Controls */
-
-
-    /* Trackball Contols */
-
-    // controls = new THREE.TrackballControls( camera );
-    // controls.rotateSpeed = 5.0;
-    // controls.zoomSpeed = 3.2;
-    // controls.panSpeed = 0.8;
-    // controls.noZoom = false;
-    // controls.noPan = true;
-    // controls.staticMoving = false;
-    // controls.dynamicDampingFactor = 0.2;
 
     /* Orbit Controls */
 

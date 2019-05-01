@@ -5,6 +5,10 @@ $("#VRbutton").click(function() {
   fullscreen(docEl);
 });
 
+//Base code retrieve from: https://vr.chromeexperiments.com/ //
+
+//Code of this page altered but originally retrieved from/ inspired by :https://medium.com/adventures-in-consumer-technology/how-to-start-building-your-own-webgl-based-vr-app-cdaf47b8132a //
+
 var camera, scene, renderer, sphere, cube;
 var left_bar, right_bar;
 var effect, controls;
@@ -36,9 +40,10 @@ console.log(urllocation);
 //Arrays of locations and co-ordinates for town square map.
 var locations = [
     ["warlds_end", 135, -220, 120 ],
+    // ["warlds_end", 90, -219, 145],
     ["dalrymple_hall", 90, -219, 145],
     ["broad_street", 45, -213, -120],
-    ["saltoun_square", 40, -213, -185],
+    ["saltoun_square", 390, -215, -250],
     ["high_street", -120, -211, -215]
   ];
 
@@ -48,6 +53,8 @@ var locations = [
       x = this[1];
       y = this[2];
       z = this[3];
+
+      // urllocation = urllocation + "_map";
 
       console.log(this[0] + " MATCH:");
 
@@ -76,14 +83,28 @@ function init() {
         svgStyle: null
     });
 
-    // right_bar = new ProgressBar.Circle('#guide_circle_right', {
-    //     strokeWidth: 10,
-    //     easing: 'easeInOut',
-    //     duration: SELECTION_TIME,
-    //     color: 'lime',
-    //     trailWidth: 2,
-    //     svgStyle: null        });
-    //     //right_bar.animate(1);
+    //COMMENT FOR AR
+
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
+      // window.webvrpolyfill.polyfillDisplays[0].deviceInfo_.viewer.interLensDistance = 0.050;
+
+      $('#left_hud').after('<div id="right_hud"> <div id="guide_circle_right"></div><div id="top_hud_text_area"><p class="heading_text"></p></div><div class="bottom_hud_text_area"><p class="info_text"></p></div></div>');
+
+      $('.bottom_hud_text_area').hide();
+
+      right_bar = new ProgressBar.Circle('#guide_circle_right', {
+          strokeWidth: 10,
+          easing: 'easeInOut',
+          duration: SELECTION_TIME,
+          color: 'lime',
+          trailWidth: 2,
+          svgStyle: null        });
+          //right_bar.animate(1);
+
+    }
+
 
     //Stereo scene
     renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -92,31 +113,13 @@ function init() {
     container.appendChild(element);
 
     effect = new THREE.StereoEffect(renderer);
+    effect.eyeSep = 10;
 
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
 
-    // Camera in centre of box
-    // camera.position.set(0, 0, 0)
-
-    // Camera at street level (warlds_end)
-    // camera.position.set(135, -220, 120);
-
-    // Camera at street level (dalrymple_hall)
-    // camera.position.set(90, -219, 145);
-
-    // Camera at street level (broad_street)
-    // camera.position.set(45, -213, -120);
-
-    // Camera at street level (saltoun_square)
-    // camera.position.set(40, -213, -185);
-
-    // Camera at street level (high_street)
-    // camera.position.set(-120, -211, -215);
-
     camera.position.set(x, y, z);
-
 
     scene.add(camera);
 
@@ -249,30 +252,26 @@ function drawShapes() {
       });
     });
 
-    // var loader = new THREE.FBXLoader();
-		// 	loader.load( 'models/dalrymple_hall/dalrymple_hall.fbx', function ( object ) {
-    //     // object.position.z = 100;
-    //     // object.position.x = -200;
-    //     object.rotation.x = Math.PI / 2;
-    //     // object.rotation.z = Math.PI / 4;
-    //     // object.position.y = -200;
-    //
-		// 		scene.add( object );
-		// 	} );
+    //Loading relevant building model
 
-    mtlLoader.setPath('models/');
-    mtlLoader.load('bubble.mtl', function (materials) {
+
+    mtlLoader.setPath('models/' + urllocation + '/model/');
+    mtlLoader.load(urllocation + '.mtl', function (materials) {
 
       materials.preload();
 
       var objLoader = new THREE.OBJLoader();
       objLoader.setMaterials(materials);
-      objLoader.setPath('models/');
-      objLoader.load('bubble.obj', function (object) {
-        object.position.z = 120;
-        object.position.x = 130;
+      objLoader.setPath('models/' + urllocation + '/model/');
+      objLoader.load(urllocation + '.obj', function (object) {
+        object.position.z = 114;
+        object.position.x =  118;
+        object.position.y = -219.5;
+
         // object.rotation.z = Math.PI / 4;
-        object.position.y = -219;
+        // object.rotation.x = Math.PI / 4;
+        object.rotation.y = Math.PI / 2;
+
         object.userData = {name:"warlds_end", touched:false};
         selectableObjs.push(object);
 
@@ -280,14 +279,6 @@ function drawShapes() {
 
       });
     });
-
-    // var loader = new THREE.FBXLoader();
-		// 		loader.load( 'models/saltoun_square.fbx', function ( object ) {
-    //
-		// 			scene.add( object );
-		// 		} );
-
-
 }
 
 //What happens after an object is selected
@@ -321,7 +312,17 @@ function getIntersections(objects){
 
 function updateHUDTxt(msg){
     x=document.getElementsByClassName("info_text");  // Find the elements
+
     for(var i = 0; i < x.length; i++){
+        if (msg == "") {
+          $('.bottom_hud_text_area').hide();
+          $('.guide_circle').show();
+        }
+        else {
+          $('.bottom_hud_text_area').show();
+          $('.guide_circle').hide();
+
+        }
         x[i].innerText=msg;    // Change the content
     }
 }
@@ -331,7 +332,7 @@ function getTouchMsg(bubble){
 
     switch (bubble) {
         case "warlds_end":
-            msg = msg + "During the 18th century, Fraserburgh became a hotbed of Jacobite resistance. This was also reflected in Lord Saltoun’s opposition to the Act of the Union with England in 1707. \n Fraserburgh had manned gates, and a garrison built against the southern edge of the town, probably in the grounds of the building in front of you; Warld’s End. This house is considered to be the oldest in Fraserburgh, built over the original house, which was the summer residence of the staunchly Jacobite family, the Gordons of Glenbuchat.";
+            msg = msg + "During the 18th century, Fraserburgh became a hotbed of Jacobite resistance.\n The town had manned gates, and a garrison likely built on the grounds of this building; Warld’s End. \n This house is considered to be the oldest in Fraserburgh.";
             break;
         // case "moon":
         //     msg = msg + "make things invisible.";
@@ -371,7 +372,7 @@ function render(dt) {
 
     if (intersects.length == 0){//nothing being "touched"
         left_bar.set(0.0);//reset any active progress bars to 0
-        // right_bar.set(0.0);
+        // right_bar.set(0.0);  //COMMENT FOR AR
 
         //Loop over all OBJ objects (the charms)
         scene.traverse (function (object)
@@ -391,9 +392,15 @@ function render(dt) {
         updateHUDTxt(msg);
     }
 
+    //If on mobile phone, render stereostopic effect. Otherwise, render like normal.
 
-    // effect.render(scene, camera);
-    renderer.render(scene, camera);
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      effect.render(scene, camera);
+    }
+    else {
+      // effect.render(scene, camera);
+      renderer.render(scene, camera);
+    }
 
 }
 
@@ -425,7 +432,7 @@ function fullscreen(container) {
     }
 }
 
-//Code inspired by: http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html 
+//Code below adapted from: http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
 
 function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),

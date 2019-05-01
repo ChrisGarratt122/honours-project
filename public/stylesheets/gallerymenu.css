@@ -100,3 +100,23 @@ h2 {
 /* #thumb1 {
   background-image: url('/img/360gallery/1.jpg');
 } */
+
+@media only screen and (max-width: 500px) {
+  h1 {
+    margin-left: 10%;
+  }
+
+  h2 {
+    margin-left: 10%;
+  }
+
+  .menu-container {
+    height: 250%;
+  }
+
+  .link-container p {
+    /* vertical-align: middle; */
+    text-align: center;
+    margin-left: 5%;
+  }
+}
